@@ -25,7 +25,7 @@ def lms(d: ndarray, x: ndarray, w: ndarray, mu: float, _):
     """
     Least-Mean-Square filtering.
     """
-    N = d.shape
+    N = d.shape[0]
 
     y = np.zeros_like(d)
     e = np.zeros_like(d)
@@ -44,7 +44,7 @@ def lms(d: ndarray, x: ndarray, w: ndarray, mu: float, _):
 
 
 def nlms(d: ndarray, x: ndarray, w: ndarray, mu: float, lambda_: float = 1.0):
-    N = d.shape
+    N = d.shape[0]
 
     y = np.zeros_like(d)
     e = np.zeros_like(d)

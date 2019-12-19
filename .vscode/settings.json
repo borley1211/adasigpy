@@ -4,7 +4,6 @@
         "--config=setup.cfg"
     ],
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": ".venv/bin/black",
     "python.linting.mypyArgs": [
         "--config=setup.cfg"
     ]

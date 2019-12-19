@@ -1,7 +1,7 @@
 import numpy as np
 
+from .domain.method import InitFilterCoefMatrix, Method
 from .interface.filter import AdaptiveSignalProcesserABC
-from .domain.method import Method, InitFilterCoefMatrix
 from .method import solve_in
 
 
@@ -14,14 +14,14 @@ class AdaptiveSignalProcesser(AdaptiveSignalProcesserABC):
         self.lambda_ = lambda_
 
     def adopt(self, d, x):
-        if d.shape != x.shape[0]:
+        if d.shape[0] != x.shape[0]:
             raise ValueError(
                 f"2 arrays should have same length. But now, 'd.shape'  is {d.shape} and 'x.shape' is {x.shape[0]}."
             )
         self.method(d, x, self.w, self.mu, self.lambda_)
 
     def apply(self, d, x):
-        if d.shape != x.shape[0]:
+        if d.shape[0] != x.shape[0]:
             raise ValueError(
                 f"2 arrays should have same length. But now, 'd.shape'  is {d.shape} and 'x.shape' is {x.shape[0]}."
             )
