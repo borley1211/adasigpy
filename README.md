@@ -1,3 +1,3 @@
-# ASPy
+# AdaSigPy
 
 Adaptive Signal Processing Package in Python
