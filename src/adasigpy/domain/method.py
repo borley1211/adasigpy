@@ -1,18 +1,21 @@
-from typing import Dict, Callable
+from typing import Callable, Dict, Union, Tuple
+
 import numpy as np
 
 from ..method import lms, nlms
 
 
-class Method():
+class Method:
     methods: Dict[str, Callable] = {
         "lms": lms,
         "nlms": nlms,
     }
 
 
-class InitFilterCoefMatrix():
-    methods: Dict[str, Callable] = {
-        "random": np.random.normal,
-        "zeros": np.zeros
-    }
+def init_w(method: str, shape: Union[int, Tuple[int]]) -> np.ndarray:
+    res: np.ndarray
+    if method == "random":
+        res = np.random.normal(0, 0.5, shape)
+    elif method == "zeros":
+        res = np.zeros(shape)
+    return res

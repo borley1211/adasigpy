@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "adasigpy"
-version = "0.1.2"
+version = "0.1.4"
 description = "Adaptive Signal Processing Package in Python"
 authors = ["borley1211 <km.isetan@gmail.com>"]
 license = "MIT"
