@@ -14,7 +14,7 @@ def lms(d: np.ndarray, x: np.ndarray, w: np.ndarray, mu: float, _):
     w_delta = np.zeros_like(w)
 
     for k in range(N):
-        y[k] = np.dot(w, x)
+        y[k] = w[k] * x[k]
         e[k] = d[k] - y[k]
         # 2 * J = e ** 2
         djdw[k] = x[k] * e[k]
@@ -33,7 +33,7 @@ def nlms(d: np.ndarray, x: np.ndarray, w: np.ndarray, mu: float, lambda_: float 
     w_delta = np.zeros_like(w)
 
     for k in range(N):
-        y[k] = np.dot(w, x)
+        y[k] = w[k] * x[k]
         e[k] = d[k] - y[k]
         # 2 * J = e ** 2 - sum(w[i] ** 2 for i in range(N))
         djdw[k] = x[k] * e[k]
