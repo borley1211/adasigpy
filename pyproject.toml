@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "adasigpy"
-version = "0.1.4"
+version = "0.1.5"
 description = "Adaptive Signal Processing Package in Python"
 authors = ["borley1211 <km.isetan@gmail.com>"]
 license = "MIT"
@@ -23,6 +23,7 @@ neovim = "^0.3.1"
 isort = "^4.3.21"
 ptpython = "^2.0.6"
 twine = "^3.1.1"
+nptyping = "^0.3.1"
 
 [build-system]
 requires = ["poetry>=0.12"]

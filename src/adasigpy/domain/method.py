@@ -1,6 +1,7 @@
 from typing import Callable, Dict, Union, Tuple
 
 import numpy as np
+from nptyping import Array
 
 from ..method import lms, nlms
 
@@ -12,8 +13,8 @@ class Method:
     }
 
 
-def init_w(method: str, shape: Union[int, Tuple[int]]) -> np.ndarray:
-    res: np.ndarray
+def init_w(method: str, shape: Union[int, Tuple[int]]) -> Array:
+    res: Array[float, shape[0], shape[1]]
     if method == "random":
         res = np.random.normal(0, 0.5, shape)
     elif method == "zeros":
