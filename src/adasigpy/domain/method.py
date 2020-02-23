@@ -13,10 +13,13 @@ class Method:
     }
 
 
-def init_w(method: str, shape: Union[int, Tuple[int]]) -> Array:
+def init_w(method: str, shape: int) -> Array:
     res: Array[float, shape[0], shape[1]]
     if method == "random":
-        res = np.random.normal(0, 0.5, shape)
+        res = np.random.normal(0, 0.5, shape, dtype="float64")
     elif method == "zeros":
-        res = np.zeros(shape)
+        res = np.zeros(shape, dtype="float64")
+    elif method == "unit":
+        res = np.zeros(shape, dtype="float64")
+        res[0] = 1.0
     return res

@@ -1,14 +1,14 @@
 from abc import ABCMeta, abstractmethod
 from typing import Callable, Tuple
 
-from numpy import ndarray
+from nptyping import Array
 
 
 class AdaptiveSignalProcesserABC(metaclass=ABCMeta):
     method: Callable
-    n: int
+    shape: int
     mu: float
-    w_init: str
+    w: Array
     domain: str
     lambda_: float
 
@@ -16,10 +16,10 @@ class AdaptiveSignalProcesserABC(metaclass=ABCMeta):
     def __init__(
         self,
         model: str,
-        n: int,
+        shape: int,
         mu: float = 0.01,
-        w_init: str = "random",
-        domain: str = "freq",
+        w_init: str = "unit",
+        domain: str = "time",
         lambda_: float = 1.0,
     ):
         """
@@ -27,36 +27,34 @@ class AdaptiveSignalProcesserABC(metaclass=ABCMeta):
 
         Args:
             model (str): Algorithm of filter.
-            n (int): Length of filter (and input).
+            shape (int): Length of filter (and input).
             mu (float, optional): Learning rate. Defaults to 0.01. It should be in range from 0 to 1.
-            w_init (str, optional): Initializing method of coef-matrix in filter. Defaults to "random". It should be "random" or "zeros".
-            domain (str, optional[FOR USE IN THE FUTURE]): Domain for filtering. Defaults to "freq".
+            w_init (str, optional): Initializing method of coef-matrix in filter. Defaults to "unit". It should be "unit", "random" or "zeros".
+            domain (str, optional[FOR USE IN THE FUTURE]): Domain for filtering. Defaults to "time".
             lambda_ (float, optional): Regularization term. Defaults to 1.0.
         """
         raise NotImplementedError
 
-    def adopt(self, d: ndarray, x: ndarray) -> None:
+    def adopt(self, d: Array, x: Array) -> None:
         """
-        adopt filter
+        Adopt filter
 
         Args:
-            d (ndarray): Desired array.
-            x (ndarray): Input array.
+            d (Array): Desired array.
+            x (Array): Input array.
         """
         raise NotImplementedError
 
-    def apply(self, d: ndarray, x: ndarray) -> Tuple[ndarray, ndarray, ndarray]:
+    def update(self, d: Array, x: Array) -> Array:
         """
-        apply filter to \(x\)
+        Update filter
 
         Args:
-            d (ndarray): Desired array (as vector, one dimensional).
-            x (ndarray): Input array (as matrix, two dimensional).
+            d (Array): Desired array (as vector, one dimensional).
+            x (Array): Input array (as matrix, two dimensional).
         'd' and 'x' should have same length.
 
         Return:
-            y (ndarray): Output array (applied).
-            e (ndarray): Error for all samples.
-            w (ndarray): Filter coef-matrix.
+            w (Array): Filter coef-array.
         """
         raise NotImplementedError

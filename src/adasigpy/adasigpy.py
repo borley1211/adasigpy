@@ -12,16 +12,18 @@ class AdaptiveSignalProcesser(AdaptiveSignalProcesserABC):
         self.lambda_ = lambda_
 
     def adopt(self, d, x):
-        if d.shape != x.shape:
+        len_d, len_x = len(d), len(x)
+        if len_d != len_x:
             raise ValueError(
-                f"2 arrays should have same length. But now, 'd.shape'  is {d.shape} and 'x.shape' is {x.shape[0]}."
+                f"2 arrays should have same length. But now, 'd' has {len_d} and 'x' has {len_x}."
             )
         self.method(d, x, self.w, self.mu, self.lambda_)
 
     def apply(self, d, x):
-        if d.shape != x.shape:
+        len_d, len_x = len(d), len(x)
+        if len_d != len_x:
             raise ValueError(
-                f"2 arrays should have same length. But now, 'd.shape'  is {d.shape} and 'x.shape' is {x.shape}."
+                f"2 arrays should have same length. But now, 'd' has {len_d} and 'x' has {len_x}."
             )
         w_delta = self.method(d, x, self.w, self.mu, self.lambda_)
         self.w = self.w + w_delta
