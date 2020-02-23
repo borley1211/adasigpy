@@ -19,7 +19,7 @@ class AdaptiveSignalProcesser(AdaptiveSignalProcesserABC):
             )
         self.method(d, x, self.w, self.mu, self.lambda_)
 
-    def apply(self, d, x):
+    def update(self, d, x):
         len_d, len_x = len(d), len(x)
         if len_d != len_x:
             raise ValueError(
